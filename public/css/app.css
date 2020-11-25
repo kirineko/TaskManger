@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
+@charset "UTF-8";
 
 /*!
  * Bootstrap v4.5.3 (https://getbootstrap.com/)
@@ -10906,5 +10906,40 @@ a.text-dark:focus {
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+a {
+  color: black;
+}
+
+.card .icon-bar {
+  width: 100%;
+  background-color: #dff0d8;
+  opacity: 0.7;
+  list-style: none;
+  z-index: 100;
+  position: absolute;
+  top: 0;
+}
+
+.card .icon-bar li {
+  float: right;
+  margin-right: 0.7em;
+}
+
+.card .icon-bar li .btn {
+  background: transparent;
+  border: none;
+  border-radius: 0%;
+  padding: 0%;
+}
+
+.card .icon-bar li .fa-btn {
+  color: #d9534f;
+}
+
+.card .modal-trigger {
+  background: transparent;
+  border: 1px solid rgba(108, 117, 125, 0.5);
 }
 
