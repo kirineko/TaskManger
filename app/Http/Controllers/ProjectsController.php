@@ -42,7 +42,10 @@ class ProjectsController extends Controller
     public function show($id)
     {
         $project = $this->repo->find($id);
-        return view('projects.show');
+        $todos = $this->repo->todos($project);
+        $dones = $this->repo->done($project);
+        $projects = request()->user()->projects()->pluck('name', 'id');
+        return view('projects.show', compact('project', 'todos', 'dones', 'projects'));
     }
 
     // update

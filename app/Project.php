@@ -2,8 +2,9 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Task;
 use App\User;
+use Illuminate\Database\Eloquent\Model;
 
 class Project extends Model
 {
@@ -16,5 +17,10 @@ class Project extends Model
     {
         //project->user
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function tasks()
+    {
+        return $this->hasMany(Task::class, 'project_id');
     }
 }

@@ -2,10 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Task;
 use Illuminate\Http\Request;
+use App\Http\Requests\CreateTask;
+use App\Http\Requests\UpdataTask;
+use App\Repositories\TasksRepository;
 
 class TasksController extends Controller
 {
+
+    protected $repo;
+
+    public function __construct(TasksRepository $repo) {
+        $this->repo = $repo;
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +25,10 @@ class TasksController extends Controller
      */
     public function index()
     {
-        //
+        $todos = $this->repo->todos();
+        $dones = $this->repo->dones();
+        $projects = request()->user()->projects()->pluck('name', 'id');
+        return view('tasks.index', compact('todos', 'dones', 'projects'));
     }
 
     /**
@@ -32,9 +47,11 @@ class TasksController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateTask $request)
     {
-        //
+
+        $this->repo->create($request);
+        return back();
     }
 
     /**
@@ -66,9 +83,10 @@ class TasksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdataTask $request, $id)
     {
-        //
+        $this->repo->update($request, $id);
+        return back();
     }
 
     /**
@@ -79,6 +97,13 @@ class TasksController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->repo->destroy($id);
+        return back();
+    }
+
+    public function check($id)
+    {
+        $this->repo->check($id);
+        return back();
     }
 }

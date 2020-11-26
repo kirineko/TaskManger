@@ -2,6 +2,6 @@
 
 @section('content')
     <div class="container">
-        <h3 class="">simple project show logic</h3>
+        @include('tasks._list')
     </div>
 @endsection

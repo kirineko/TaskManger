@@ -46,7 +46,8 @@ class UpdateProjectRequest extends FormRequest
             'name.required' => '项目名称必填',
             'name.unique' => '项目名称必须唯一',
             'thumbnail.image' => '请上传一个图片文件',
-            'thumbnail.dimensions' => '像素大小至少260*100'
+            'thumbnail.dimensions' => '像素大小至少260*100',
+            'thumbnail.max' => '不要上传超过2M的图片'
         ];
     }
 
